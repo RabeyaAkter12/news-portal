@@ -90,3 +90,15 @@ const displayDetails = categoryId => {
   })
   loadSpinnerBulen(false);
 }
+
+//----------loading spinner---------
+
+const loadSpinnerBulen = (isLoad) => {
+  const loading = document.getElementById('loading')
+  if (isLoad) {
+    loading.classList.remove('d-none')
+  }
+  else {
+    loading.classList.add('d-none')
+  }
+}
