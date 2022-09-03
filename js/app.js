@@ -102,3 +102,37 @@ const loadSpinnerBulen = (isLoad) => {
     loading.classList.add('d-none')
   }
 }
+
+
+const detailModal = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/news/${id}`;
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+    modalDisplay(data.data)
+  }
+  catch {
+    alert('The answer is not correct');
+  }
+};
+const modalDisplay = id => {
+
+  id.forEach(newsId => {
+    console.log(newsId);
+    const modalShowTitle = document.getElementById('modal-Example')
+    modalShowTitle.innerText = newsId.title;
+    const modalBody = document.getElementById('modal-body')
+    modalBody.innerHTML = ` 
+      <img class="img" src="${newsId.author.img}" alt="">
+      <P>${newsId.author.name ? newsId.author.name : 'No found name'}
+    (/br)
+        ${newsId.author.published_date}
+      <hr>
+      <p><i class="fa-solid fa-eye"></i> ${newsId.total_view ? newsId.total_view : 'No data available'} </p>
+      <p>${newsId.title}</p>
+      <img class="img-fluid" src="${newsId.thumbnail_url}" alt="">
+      `;
+  })
+};
+
+loadDataAll();
