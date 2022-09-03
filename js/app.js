@@ -24,3 +24,17 @@ const displayData = allCategoryNews => {
   });
 }
 
+//<------------ show all details -------------> 
+
+const showAllDetails = async (id) => {
+  loadSpinnerBulen(true);
+  const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+    displayDetails(data.data)
+  }
+  catch (error) {
+    alert('The answer is not correct')
+  }
+}
